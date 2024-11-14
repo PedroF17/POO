@@ -108,8 +108,16 @@ namespace POO.Classes
         // }
 
         public void GetAllProjects(){
+            Console.WriteLine("Projects");
             foreach(Project project in _projects){
+                Console.WriteLine("--------------------");
                 Console.WriteLine(project.ProjectName);
+                Console.WriteLine(project.ClientName);
+                Console.WriteLine(project.StartDate);
+                Console.WriteLine(project.EndDate);
+                Console.WriteLine(project.Budget);
+                Console.WriteLine(project.ProjectStatus);
+                Console.WriteLine("--------------------");
             }
         }
         #endregion

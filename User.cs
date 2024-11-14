@@ -52,7 +52,7 @@ public class User
     #endregion
     #region Methods
     /// <summary>
-    /// Updates the user's information with new values.
+    /// Updates the user's information with new values introduced by the user.
     /// </summary>
     /// <param name="newUserName">The new name to be assigned to the user.</param>
     /// <param name="newUserContactInfo">The new contact information for the user.</param>
@@ -63,14 +63,27 @@ public class User
         _userContactInfo = newUserContactInfo;
         _userAddress = newUserAddress;
     }
-
+    /// <summary>
+    /// Updates the user's role with a new one introduced by the user.
+    /// </summary>
+    /// <param name="newUserRole"></param>
     private void UpdateUserRole(UserRole newUserRole){
         _userRole = newUserRole;
     }
-
+    /// <summary>
+    /// Prints 
+    /// </summary>
     private void GetAllUsers(){
+        Console.WriteLine("Users");
         foreach(User user in _users){
+            Console.WriteLine("--------------------");
             Console.WriteLine(user.UserName);
+            Console.WriteLine(user.UserRole);
+            Console.WriteLine(user.UserContactInfo);
+            Console.WriteLine(user.UserAddress);
+            Console.WriteLine("--------------------");
+            Console.WriteLine();
+            
         }
     }
     #endregion
