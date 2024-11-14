@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+namespace POO.Users{
 public class User
 {
     #region Private Properties
@@ -96,4 +96,5 @@ public enum UserRole
     Employee,
     Contractor,
     Client
+}
 }

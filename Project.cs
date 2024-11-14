@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
-
-namespace POO.Classes
+using POO.Users;
+using POO.Documents;
+namespace POO.Projects
 {
     public class Project
     {
@@ -14,6 +15,7 @@ namespace POO.Classes
         private DateTime _endDate;
         private decimal _budget;
         private ProjectStatus _projectStatus;
+        private ProjectType _projectType;
         private List<User> _assignedUsers;
         // private List<Document> _documents;
         private List<Project> _projects = new ();
@@ -60,10 +62,10 @@ namespace POO.Classes
             get { return _assignedUsers; }
             set { _assignedUsers = value; }
         }
-        // public List<Document> Documents{
-        //     get { return _documents; }
-        //     set { _documents = value; }
-        // }
+        public ProjectType ProjectType{
+            get { return _projectType; }
+            set { _projectType = value; }
+        }
         #endregion       
 
         #region Constructors
@@ -82,31 +84,29 @@ namespace POO.Classes
         #endregion
 
         #region Methods
-        public void UpdateProjectInfo(string newProjectName, string newClientName, DateTime newStartDate, DateTime newEndDate, decimal newBudget, ProjectStatus newProjectStatus)
+        public void UpdateProjectInfo(string newProjectName, string newClientName, DateTime newStartDate, DateTime newEndDate, decimal newBudget, ProjectType newProjectType, ProjectStatus newProjectStatus)
         {
             _projectName = newProjectName;
             _clientName = newClientName;
             _startDate = newStartDate;
             _endDate = newEndDate;
             _budget = newBudget;
+            _projectType = newProjectType;
             _projectStatus = newProjectStatus;
         }
-        public void AddUserToProject(User user)
+        /// <summary> Add a user to a project selected by the user. </summary>
+        public void AddUserToProject(User user, Project project)
         {
             _assignedUsers.Add(user);
         }
-        public void RemoveUserFromProject(User user)
+        static public void RemoveUserFromProject(User user)
         {
             _assignedUsers.Remove(user);
         }
-        // public void AddDocumentToProject(Document document)
-        // {
-        //     _documents.Add(document);
-        // }
-        // public void RemoveDocumentFromProject(Document document){
-        //     _documents.Remove(document);
-        // }
-
+        // add a document to the project, present in the document class Document.cs
+        public void AddDocumentToProject(Document document){
+            _documents.Add(document);
+        }
         public void GetAllProjects(){
             Console.WriteLine("Projects");
             foreach(Project project in _projects){
@@ -116,6 +116,7 @@ namespace POO.Classes
                 Console.WriteLine(project.StartDate);
                 Console.WriteLine(project.EndDate);
                 Console.WriteLine(project.Budget);
+                Console.WriteLine(project.ProjectType);
                 Console.WriteLine(project.ProjectStatus);
                 Console.WriteLine("--------------------");
             }
@@ -128,5 +129,9 @@ namespace POO.Classes
         InProgress,
         Completed,
         Cancelled
+    }
+    public enum ProjectType{
+        Public,
+        Private
     }
 }

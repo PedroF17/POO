@@ -1,20 +1,27 @@
 using System;
-using POO.Classes;
-
-public class Test{
+using POO.Projects;
+using POO.Users;
+using POO.Documents;
+public class POOProject{
     public static void Main(string[] args){
         // Create a new user        
         User user1 = new User(1, "John Doe", UserRole.Employee, "john@example.com", "123 Main St.");
-        
+
         // Update user information
         user1.UpdateUserInfo("Jane Doe", "jane@example.com", "456 Elm St.");
-        
+
         // Create a new project
-        Project project1 = new Project(1, "Project A", "Client A", DateTime.Now, DateTime.Now.AddMonths(6), 10000, ProjectStatus.Active);
-        
+        Project project1 = new (1, "Project A", "Client A", DateTime.Now, DateTime.Now.AddMonths(6), 10000, ProjectStatus.Active);
+
+        // Create a new document
+        Document document1 = new (1, "Document A", "Description A", DateTime.Now, DocumentType.BriefingReport);
+
+        // Add document to project
+        project1.AddDocumentToProject(document1, project1);
+
         // Add user to project
-        project1.AddUserToProject(user1);
-        
+        project1.AddUserToProject(user1, project1);
+
         // Print project information
         Console.WriteLine("Project Name: " + project1.ProjectName);
         Console.WriteLine("Client Name: " + project1.ClientName);
@@ -28,22 +35,15 @@ public class Test{
         Console.WriteLine("User Role: " + user1.UserRole);
         Console.WriteLine("User Contact Info: " + user1.UserContactInfo);
         Console.WriteLine("User Address: " + user1.UserAddress);
-    
-        // Create a new document
-        // Document document1 = new Document(1, "Document A", "Description A", "file1.txt", DateTime.Now);
-        
-        // // Add document to project
-        // project1.AddDocumentToProject(document1);
-        
-        // // Print document information
-        // Console.WriteLine("\nDocument Name: " + document1.DocumentName);
-        // Console.WriteLine("Description: " + document1.Description);
-        // Console.WriteLine("File Path: " + document1.FilePath);
-        // Console.WriteLine("Upload Date: " + document1.UploadDate);
 
-        // Remove user from project
-        project1.RemoveUserFromProject(user1);
-        
+        // Print document information
+        Console.WriteLine("\nDocument Name: " + document1.DocumentName);
+        Console.WriteLine("Description: " + document1.DocumentDescription);
+        Console.WriteLine("Date: " + document1.DocumentDate);
+        Console.WriteLine("Type: " + document1.DocumentType);
+        Console.WriteLine("Is Signed: " + document1.IsSigned);
+
+        Project.RemoveUserFromProject(user1, project1);
         // Print updated project information
         Console.WriteLine("\nUpdated Project Information:");
         Console.WriteLine("Project Name: " + project1.ProjectName);
